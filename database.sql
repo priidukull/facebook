@@ -1,0 +1,10 @@
+CREATE SCHEMA fb;
+
+CREATE TABLE fb.news (
+  id BIGSERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  summary TEXT NOT NULL,
+  link TEXT NOT NULL,
+  date DATE NOT NULL,
+  published BOOLEAN NOT NULL DEFAULT FALSE
+);
