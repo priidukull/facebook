@@ -1,6 +1,8 @@
 import re
 import urllib.parse
+
 import requests
+
 from models import Session
 from news_repository import NewsRepository
 from parameters import PAGE_ACCESS_TOKEN, APP_ID, PAGE_ID
@@ -10,6 +12,8 @@ class Publishing():
 
     def publish(self):
         news = NewsRepository().get_unpublished()
+        if len(news) > 3:
+            raise Exception("Too many unpublished news")
         for a_news in news:
             self.publish_one(a_news)
 
