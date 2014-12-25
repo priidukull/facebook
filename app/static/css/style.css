@@ -1,0 +1,10 @@
+@import url(bootstrap.min.css);
+
+.pg_header {font-weight: bold;}
+
+a:active {color: #2c63cc;}
+a:hover {color: #2c63cc;}
+a:link {color: #2c63cc;}
+a:visited {color: #2c63cc;}
+
+.table {font-size: small}
