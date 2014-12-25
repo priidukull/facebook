@@ -1,14 +1,18 @@
-APP_ID = "1513767512207223"
-APP_SECRET = "e01af78eff01240ed9f167011e1153f7"
-FEED_URL = "http://www.riigikohus.ee/rss/"
-PAGE_ID = '386451258178543'
-PAGE_ACCESS_TOKEN = "CAAVgw3bWb3cBAAynBI9RRGVLq2yUVQqxTSZAC5lRkMK9nAAZCsFxPRZBjsoVmpufFILOWmQOHVxPpFb0tlx0l4Hbbz52wxLHLMmZCAP5U4kibWKYYrVZCTVTumHEpG4xvdMrNJolonVRaBA9bKv6fOZAdVcNpJWYTJOqjwHpfAKAKuNCM8cgbb"
-PERSONAL_ACCESS_TOKEN = "CAAVgw3bWb3cBABreL4W1h0O93BDBIk7fMipxoiJKPa1xSZCNumTQAYAXuhwdxlPX6lrobh5y7GEjSqJMPjwbbSnk8Rl656LzrJIXwMlEtbf7gs6dJjdPaTqaRdiFQhxOmySn0zyBzBCrQwkZBZCZCUZCVsULtgnmuD8PwZCxbtGPZAu0TMcvQZAg1NHT1bsenstWrBZBQxgRs8UfRNfRTZAyWs"
-REDIRECT_URI = "http://www.legal.ee/facebook"
-USER_ID = "762468393802810"
+import importlib
+import os
+import re
 
-SECONDS_IN_MINUTE = 60
 
-TEST_ACCESS_TOKEN = '1522386624678645|IaRAAKIm1XGjsZhOn4Df7uN4GXk'
-TEST_APP_ID = "1522386624678645"
-TEST_APP_SECRET = '721b9fef325ca05605b102bec5e2f7dc'
+def load_settings(env):
+    module = importlib.import_module('settings.' + env)
+    settings = {k: v for k, v in module.__dict__.items()
+                if not re.match('^(_|@)', k)}
+    globals().update(settings)
+
+env_var = os.environ.get('MODE')
+if env_var:
+    env = env_var.lower()
+else:
+    env = 'dev'
+
+load_settings(env)
