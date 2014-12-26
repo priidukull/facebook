@@ -1,7 +1,6 @@
 import importlib
 import os
 import re
-from settings.default import *
 
 
 def load_settings(env):
@@ -16,4 +15,5 @@ if env_var:
 else:
     env = 'dev'
 
-load_settings(env)
+for e in ['default', env]:
+    load_settings(e)
