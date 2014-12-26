@@ -1,10 +1,16 @@
 @import url(bootstrap.min.css);
 
-.pg_header {font-weight: bold;}
+.col-head {font-weight: bold;
+            padding-bottom: 7px}
+.container {padding-top: 10px}
+.table {font-size: small}
+.table { display: table; }
+.table>* { display: table-row; }
+.table>*>* { display: table-cell; }
 
 a:active {color: #2c63cc;}
 a:hover {color: #2c63cc;}
 a:link {color: #2c63cc;}
 a:visited {color: #2c63cc;}
 
-.table {font-size: small}
+

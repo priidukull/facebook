@@ -19,6 +19,9 @@ class News(Base):
     def all(self):
         return Session().query(News).order_by(News.id.desc()).all()
 
+    def one(self, id):
+        return Session().query(News).filter_by(id=id).one()
+
 
 class Post(Base):
     __tablename__ = 'post'
