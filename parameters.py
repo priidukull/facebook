@@ -1,6 +1,7 @@
 import importlib
 import os
 import re
+from settings.default import *
 
 
 def load_settings(env):
