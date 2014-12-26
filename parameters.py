@@ -3,7 +3,7 @@ import os
 import re
 
 
-def load_settings(env):
+def _load_settings(env):
     module = importlib.import_module('settings.' + env)
     settings = {k: v for k, v in module.__dict__.items()
                 if not re.match('^(_|@)', k)}
@@ -16,4 +16,4 @@ else:
     env = 'dev'
 
 for e in ['default', env]:
-    load_settings(e)
+    _load_settings(e)
