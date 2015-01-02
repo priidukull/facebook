@@ -1,11 +1,11 @@
 import re
 
-from sqlalchemy import Column, UnicodeText, Boolean, BigInteger
+from sqlalchemy import Column, UnicodeText, Boolean, BigInteger, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 from schema import engine
-from schema.fb import news
+from schema.fb import news, user
 
 
 Base = declarative_base()
@@ -42,3 +42,31 @@ class Post(Base):
         else:
             content = a_news.title
         return content.replace('&amp;', '&')
+
+class User(Base):
+    __table__ = user
+
+    def is_active(self):
+        # Here you should write whatever the code is
+        # that checks the database if your user is active
+        return self.active
+
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return True
+
+    def get(self, id):
+        return Session().query(User).filter_by(id=id).first()
+
+    def get_id(self):
+        return self.id
+
+
+class AnynomousUser(User):
+    def is_anonymous(self):
+        return True
+
+    def is_authenticated(self):
+        return False

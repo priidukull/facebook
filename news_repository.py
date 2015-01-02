@@ -1,5 +1,6 @@
 import datetime
-from models import Session, News
+
+from app.models import Session, News
 
 
 class NewsRepository():

@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-    <table class="table">
-        <tbody>
-            <tr>
-              <th>id</th><th>title</th><th>summary</th><th>link</th><th>published</th>
-            </tr>
-            {% for a_news in news %}
-                <tr>
-                  <td>{{a_news.id}}</td><td>{{a_news.title}}</td><td>{{a_news.summary}}</td><td>{{a_news.link}}</td><td>{{a_news.published}}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+  <div class="row col-head">
+    <div class="col-xs-1">id</div>
+    <div class="col-xs-6">content</div>
+    <div class="col-xs-3">link</div>
+    <div class="col-xs-1">published</div>
+    <div class="col-xs-1">action</div>
+  </div>
 
+  {% for post in posts %}
+    <div class="row">
+      <form action="" method="post">
+        <input type="hidden" name="id", value="{{post.id}}"></input>
+        <div class="col-xs-1">{{post.id}}</div>
+        <div class="col-xs-6">{{post.content}}</div>
+        <div class="col-xs-3">{{post.link}}</div>
+        <div class="col-xs-1">{{post.published}}</div>
+        <div class="col-xs-1">
+          <input type="submit" value="Publish" class="btn btn-default btn-sm"></input>
+        </div>
+      </form>
+    </div>
+  {% endfor %}
+
+{% endblock %}
