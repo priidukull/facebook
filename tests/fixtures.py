@@ -1,6 +1,6 @@
 import pytest
 
-from app.models import Session
+from models import Session
 
 
 @pytest.fixture()

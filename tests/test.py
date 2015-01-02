@@ -1,6 +1,6 @@
 import pytest
 
-from app.models import News, Post, Session
+from models import News, Post, Session
 from tests.fixtures import session
 
 
