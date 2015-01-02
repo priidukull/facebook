@@ -2,8 +2,8 @@ import requests
 
 from api import Api
 from app.models import Session, Post
-from news_repository import NewsRepository
 from parameters import PAGE_ACCESS_TOKEN, APP_ID, PAGE_ID
+from repos.news import NewsRepository
 
 
 class Publishing():

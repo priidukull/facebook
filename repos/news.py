@@ -1,9 +1,10 @@
 import datetime
 
-from app.models import Session, News
+from app.models import News, Session
 
 
-class NewsRepository():
+class NewsRepository(News):
+
     def save_news(self, news):
         session = Session()
         q = session.query(News)

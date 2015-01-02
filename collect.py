@@ -1,5 +1,6 @@
 import feedparser
-from news_repository import NewsRepository
+
+from repos.news import NewsRepository
 from parameters import FEED_URL
 
 
