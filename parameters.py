@@ -3,19 +3,14 @@ import os
 import re
 
 
-def _load_settings(env):
-    module = importlib.import_module('settings.' + env)
+mode = os.environ["FB_MODE"]
+action_var = os.getenv("ACTION")
+
+def _load_settings(mode):
+    module = importlib.import_module('settings.' + mode)
     settings = {k: v for k, v in module.__dict__.items()
                 if not re.match('^(_|@)', k)}
     globals().update(settings)
 
-env_var = os.environ.get('MODE')
-if env_var:
-    env = env_var.lower()
-else:
-    env = 'dev'
-
-action_var = os.environ.get('ACTION')
-
-for e in ['default', env]:
+for e in ['default', mode]:
     _load_settings(e)
