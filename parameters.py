@@ -15,5 +15,7 @@ if env_var:
 else:
     env = 'dev'
 
+action_var = os.environ.get('ACTION')
+
 for e in ['default', env]:
     _load_settings(e)

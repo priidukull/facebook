@@ -3,10 +3,10 @@ from functools import wraps
 from flask import render_template, request, g
 from flask.ext.login import current_user
 
-from app import app, login_manager
+from app import login_manager, app
+from calls.master import Publishing
 from app.forms import LoginForm
 from app.models import News, Post, User
-from publish import Publishing
 
 
 def login_required(func):
