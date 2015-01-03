@@ -3,7 +3,7 @@ import os
 import re
 
 
-mode = os.environ["FB_MODE"]
+mode = 'live'
 action_var = os.getenv("ACTION")
 
 def _load_settings(mode):
