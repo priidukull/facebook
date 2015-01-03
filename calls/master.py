@@ -1,20 +1,11 @@
 import requests
 
-from api import Api
 from app.models import Session, Post
+from calls.api import Api
 from parameters import PAGE_ACCESS_TOKEN, APP_ID, PAGE_ID
-from repos.news import NewsRepository
 
 
-class Publishing():
-
-    def publish(self):
-        news = NewsRepository().get_unpublished()
-        if len(news) > 3:
-            raise Exception("Too many unpublished news")
-        for a_news in news:
-            self.publish_one(a_news)
-
+class Publishing:
     def publish_one(self, a_news):
         message = self._compose_message(a_news)
         r = self._compose_request(message)
