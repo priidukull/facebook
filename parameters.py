@@ -3,7 +3,6 @@ import os
 import re
 
 
-mode = os.environ.get('MODE')
 action_var = os.getenv('ACTION')
 
 def _load_settings(mode):
@@ -12,5 +11,5 @@ def _load_settings(mode):
                 if not re.match('^(_|@)', k)}
     globals().update(settings)
 
-for e in ['default', mode]:
+for e in ['default', os.environ.get('MODE')]:
     _load_settings(e)
