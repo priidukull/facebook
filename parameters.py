@@ -11,7 +11,7 @@ action_var = os.getenv('ACTION')
 
 
 def _load_settings(m):
-    module = importlib.import_module('settings.%s' % m)
+    module = importlib.import_module('settings.' + m)
     settings = {k: v for k, v in module.__dict__.items()
                 if not re.match('^(_|@)', k)}
     globals().update(settings)
