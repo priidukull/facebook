@@ -3,8 +3,8 @@ import os
 import re
 
 
-mode = 'live'
-action_var = os.getenv("ACTION")
+mode = os.environ.get('MODE')
+action_var = os.getenv('ACTION')
 
 def _load_settings(mode):
     module = importlib.import_module('settings.' + mode)

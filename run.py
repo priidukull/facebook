@@ -1,29 +1,40 @@
 from time import sleep
 
 import feedparser
+import requests
 
 from calls.master import Publishing
-from collect import collect
 from parameters import SECONDS_IN_MINUTE, FEED_URL
 from repos.news import NewsRepository
 
 
-def collect():
+def _remove(news):
+    for n in news:
+        f = requests.get(n['link']).text
+        if '<b>kohtuasjaga seotud dokumente ei leitud</b>' in f:
+            news.remove(n)
+            print('Not collecting news with URL=%s' % n['link'])
+    return news
+
+def _collect():
     feed = feedparser.parse(FEED_URL)
     news = feed['entries']
-    print("Collecting news")
+    news = _remove(news)
+    print('Collecting news')
     NewsRepository().save_news(news)
 
-def publish():
+def _publish():
     news = NewsRepository().get_unpublished()
     if len(news) > 3:
-        raise Exception("Too many unpublished news")
+        raise Exception('Too many unpublished news')
     for a_news in news:
         Publishing().publish_one(a_news)
 
-while True:
-    collect()
-    publish()
-    minutes = 15
-    print("Will sleep for %d minutes" % minutes)
-    sleep(minutes * SECONDS_IN_MINUTE)
+
+if __name__ == '__main__':
+    while True:
+        _collect()
+        _publish()
+        minutes = 15
+        print("Will sleep for %d minutes" % minutes)
+        sleep(minutes * SECONDS_IN_MINUTE)
