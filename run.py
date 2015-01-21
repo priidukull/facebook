@@ -36,5 +36,5 @@ if __name__ == '__main__':
         _collect()
         _publish()
         minutes = 15
-        print("Will sleep for %d minutes" % minutes)
+        print('Will sleep for %d minutes' % minutes)
         sleep(minutes * SECONDS_IN_MINUTE)
