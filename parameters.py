@@ -4,7 +4,7 @@ import re
 import socket
 
 
-mode = os.environ
+mode = os.environ.get('MODE')
 if not mode and socket.gethostname() == 'ip-172-31-47-240':
     mode = 'live'
 action_var = os.getenv('ACTION')
