@@ -25,8 +25,6 @@ def _collect():
 
 def _publish():
     news = NewsRepository().get_unpublished()
-    if len(news) > 3:
-        raise Exception('Too many unpublished news')
     for a_news in news:
         Publishing().publish_one(a_news)
 
